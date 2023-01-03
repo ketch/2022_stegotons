@@ -1,0 +1,18 @@
+For a medium with constant density (but variable K), the leading
+fast-scale-dependent term for sigma vanishes.  
+
+I found that I needed more resolution for this kind of medium; otherwise the
+solitary waves didn't separate.
+
+In my simulations of this I used these parameters:
+
+cells_per_layer = 80
+alpha = 0.5
+KA    = 1.0
+KB    = 16.0
+rhoA  = 1.0
+rhoB  = 1.0
+ 
+state.problem_data['a1']    = 0.02  # was 0.1
+
+tfinal = 4000 (command line)
