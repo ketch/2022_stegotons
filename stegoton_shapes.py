@@ -150,6 +150,8 @@ def setup(use_petsc=0,kernel_language='Fortran',solver_type='classic',outdir='./
     if solver_type=='sharpclaw':
         solver = pyclaw.SharpClawSolver1D(rs)
         solver.char_decomp=0
+        solver.cfl_max = 2.0
+        solver.cfl_desired = 1.95
     else:
         solver = pyclaw.ClawSolver1D(rs)
 
@@ -180,6 +182,9 @@ def setup(use_petsc=0,kernel_language='Fortran',solver_type='classic',outdir='./
     domain = pyclaw.Domain(x)
     state = pyclaw.State(domain,solver.num_eqn,num_aux=3)
     state.problem_data['stress_relation'] = 'exponential'
+    state.grid.add_gauges([(-50.25,)])
+    state.grid.add_gauges([(0.25,)])
+    state.grid.add_gauges([(90.25,)])
     state.grid.add_gauges([(190.25,)])
     state.grid.add_gauges([(190.75,)])
     state.grid.add_gauges([(390.25,)])
